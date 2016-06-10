@@ -1,0 +1,63 @@
+<table>
+	<tr>
+		<td>姓名</td>
+		<td>
+			<input type="text" style="height:50px;width: 200px;font-size: 25px;" placeholder="请输入您的姓名" id="name">
+		</td>
+	</tr>
+	<tr>
+		<td>手机号</td>
+		<td>
+			<input type="text" style="height:50px;width: 200px;font-size: 25px;" placeholder="请输入您的手机号" id="phone">
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="2" align="center">
+			<input style="width:300px;height: 60px;" type="button" id="order" value="确定" onclick="order()">
+		</td>
+	</tr>
+</table>
+<script>
+function isPhone(v){
+	if(isNaN(v))
+		return false;
+	if((v + "").length != 11)
+		return false;
+	return true;
+}
+
+function order(){
+	if(!$("#name").val()){
+		alert("请输入姓名");
+		return;
+	}
+	var phone = $("#phone").val();
+	if(!phone){
+		alert("请输入手机号");
+		return;
+	}
+	if(!isPhone(phone)){
+		alert("请输入正确的手机号！");
+		return ;
+	}
+	
+	dlg.showLoading();
+	$("#order").attr("disabled",true);
+	$.ajax({
+		type	:	"POST",
+		url		:	"recv.jsp",
+		data	:	"name=" + Utils.trim($("#name").val()) + "&phone=" + Utils.trim($("#phone").val()) + "&info=" + Utils.encodeHexUrl(GyUtils.getMgr().toJsonObject()),
+		success	:	function(ret){
+			if('succ' == Utils.trim(ret)){
+				alert("已下单，我们将会在24小时之内通知您！");
+			}else{
+				alert("下单失败，请联系客服：18201064415.");
+			}
+			$("#order").attr("disabled",false);
+			dlg.hideLoading();
+			dlg.close();
+		}
+	});
+}
+</script>

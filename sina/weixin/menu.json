@@ -1,0 +1,64 @@
+{
+    "button": [
+        {
+            "type": "click", 
+            "name": "云服务", 
+            "key": "V1001_CLOUD"
+        }, 
+        {
+            "name": "测试菜单", 
+            "sub_button": [
+                {
+                    "type": "view", 
+                    "name": "供应链", 
+                    "url": "http://rockets311.sinaapp.com/gy/index.html"
+                }, 
+                {
+                    "type": "view", 
+                    "name": "我的帐号", 
+                    "url": "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx027784a72daaaf59&redirect_uri=http%3A%2F%2Frockets311.sinaapp.com%2Fweixin%2Foauth.jsp&response_type=code&scope=snsapi_base&state=123#wechat_redirect"
+                }, 
+                {
+                    "type": "click", 
+                    "name": "免费体验", 
+                    "key": "V1001_MFTY"
+                }, 
+                {
+                    "type": "view", 
+                    "name": "合作案例", 
+                    "url": "http://rockets311.sinaapp.com/weixin/html/hzal.html"
+                }, 
+                {
+                    "type": "view", 
+                    "name": "最新动态", 
+                    "url": "http://rockets311.sinaapp.com/weixin/html/zxdt.html"
+                }
+            ]
+        }, 
+        {
+            "name": "关于我们", 
+            "sub_button": [
+                {
+                    "type": "view", 
+                    "name": "公司介绍", 
+                    "url": "http://rockets311.sinaapp.com/weixin/html/gsjs.html"
+                }, 
+                {
+                    "type": "view", 
+                    "name": "代理招募", 
+                    "url": "http://rockets311.sinaapp.com/weixin/html/dlzm.html"
+                }, 
+                {
+                    "type": "view", 
+                    "name": "联系我们", 
+                    "url": "http://rockets311.sinaapp.com/weixin/html/lxwm.html"
+                }, 
+                {
+                    "type": "view", 
+                    "name": "申请使用", 
+                    "url": "http://rockets311.sinaapp.com/weixin/html/sqsy.html"
+                }
+            ]
+        }
+    ]
+}

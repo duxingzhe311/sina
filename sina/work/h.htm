@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://172.16.10.9:8080/pltc/report/reportAction -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!--<base href="http://172.16.10.9:8080/pltc/">--><base href=".">
+    
+    <title>h</title>
+	<meta charset="utf-8">
+	<meta content="width=device-width, initial-scale=0.3, maximum-scale=0.3, user-scalable=0.3;" name="viewport">
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0"> 
+	<script type="text/javascript" src="./h_files/ichart.1.2.min.js"></script>
+  	<link rel="stylesheet" href="./h_files/tableList.css" type="text/css">
+  	<script type="text/javascript">
+  		//window.resizeTo = function(){return false;};
+		//大饼图
+  		$(function(){
+			var data = [];
+			if(!data || data.length < 1){
+				data = [{name:'暂无数据',value:'0',color:'#CFCFCF'}]; 
+			}
+			
+			var chart = new iChart.Pie2D({
+				render : 'canvasDiv',
+				data: data,
+				title : {
+					text : '  ',
+					height:35,
+					fontsize : 30,
+				},
+				subtitle:{
+					text:'马氏老汤拉面菜品日销售表',//利用副标题设置单位信息
+					font : '微软雅黑',
+					fontsize:32,
+					textAlign:'left',
+					padding:'13 15',
+					color:'black'
+				},
+				sub_option : {
+					mini_label_threshold_angle : 0,//迷你label的阀值,单位:角度
+					mini_label:{//迷你label配置项
+						fontsize:30,
+						fontweight:600,
+						color : '#ffffff'
+					},
+					border : {
+						width : 5,
+						color : '#ffffff'
+					},
+					label : {
+						background_color:null,
+						sign:false,//设置禁用label的小图标
+						padding:'0 0',
+						border:{
+							enable:false,
+							color:'#666666'
+						},
+						fontsize:11,
+						fontweight:600,
+						color : 'red'
+					},
+					listeners:{
+						parseText:function(d, t){
+							return d.get('value')+"份";//自定义label文本
+						}
+					} 
+				},
+				legend:{
+					enable:true,
+					padding:0,
+					offsetx:-50,
+					offsety:0,
+					color:'#3e576f',//左侧图表字体颜色
+					fontsize:25,//文本大小
+					sign_size:25,//小图标大小
+					line_height:60,//设置行高
+					sign_space:30,//小图标与文本间距
+					border:false,
+					align:'right',
+					background_color : null//透明背景
+				}, 
+				shadow : true,
+				shadow_blur : 16,
+				shadow_color : '#aaaaaa',
+				shadow_offsetx : 0,
+				shadow_offsety : 0,
+				border: 0,
+				background_color:'#f9f4ee',//背景颜色
+				align:'left',//右对齐
+				offsetx:100,//设置向x轴负方向偏移位置60px
+				//offset_angle:90,//逆时针偏移120度
+				width : 950,
+				height : 800,
+				radius:350//设置饼的大小
+			});
+			//利用自定义组件构造右侧说明文本
+			chart.plugin(new iChart.Custom({
+					drawFn:function(){
+						//在右侧的位置，渲染说明文字
+						chart.target.textAlign('start')
+						.textBaseline('top')
+						.textFont('700 25px Verdana')
+					}
+			}));
+			chart.draw();
+			
+			
+			//折线图
+			var data2 = [{
+			        		name:'老马拉面',
+			        		value:[0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0],
+			        		color:'#287d7d',//区域颜色
+			        		line_width:2
+			        	}];
+	        if(data2 && data2.length > 0){
+				var labels = ['13日','14日','15日','16日','17日','18日','今日'];
+				var chart2 = new iChart.Area2D({
+					render : 'canvasDivLine',
+					data: data2,
+					title : {
+						text : '  ',
+						height:35,
+						fontsize : 30,
+					},
+					subtitle : {
+						text:'马氏老汤拉面营业额报表',
+						font : '微软雅黑',
+						fontsize:32,
+						textAlign:'left',
+						padding:'13 15',
+						color:'black'
+					},
+					width : 950,
+					height : 700,
+					background_color:'#f9f4ee',
+					border:0,
+					area_opacity:0.15,
+					legend : {
+						enable : false,//是否显示name
+						row:1,//设置在一行上显示，与column配合使用
+						column : 'max',
+						valign:'top',
+						background_color:null,//设置透明背景
+						offsetx:30,//设置x轴偏移，满足位置需要
+						border : 1 
+					},
+					tip:{
+						enable : true,
+						listeners:{
+							 //tip:提示框对象、name:数据名称、value:数据值、text:当前文本、i:数据点的索引
+							parseText:function(tip,name,value,text,i){
+								return "<span style='color:white;background-color:#287d7d;font-size:20px;font-weight:bold;'>￥"+value+"</span>";
+							}
+						}
+					},
+					sub_option:{
+						smooth : false,//弯曲
+						label:false,
+						point_size:15//点的大小
+					},
+					crosshair:{
+						enable:false,//鼠标跟踪线
+						line_color:'blue'//鼠标线颜色
+					},
+					coordinate:{
+						axis : {
+							width : [0.5, 0.5,1, 0.5]
+						},
+						background_color:'#f9f4ee',
+						width:780,
+						height:460,
+						offsetx:30,//设置x轴偏移，满足位置需要
+						scale2grid:false,//是否显示竖格
+						grids:{
+							horizontal:{
+									way:'share_alike',
+									value:10
+								}
+							}, 
+							scale:[{
+								 position:'left',	
+								 start_scale:0,
+								 //end_scale:10000,
+								 //scale_space:2000,
+								 scale_size:0,
+								 scale_enable : false,
+								 label : {color:'black',font : '微软雅黑',fontsize:30,fontweight:600}
+							},{
+								 position:'bottom',	
+								 label : {color:'black',font : '微软雅黑',fontsize:30,fontweight:600},//x轴字体
+								 scale_enable : false,
+								 labels:labels
+							}]
+					}
+				});
+				chart2.draw();
+	        }else{
+				//document.getElementById("canvasDivLine").innerHTML = "今日无数据，点击查看历史。";
+	        }
+		});
+		</script>
+		<script id="allmobilize" charset="utf-8" src="http://a.yunshipei.com/5f40eeca5efc3e790bef7f5f552f754d/allmobilize.min.js"></script><meta http-equiv="Cache-Control" content="no-siteapp" /><link rel="alternate" media="handheld" href="#"/>
+  	</head>
+  
+  
+  <body>
+      <div style="margin: auto;">
+    <div style="border: 0px solid black;height:700;margin-top:0px;">
+    	<a href="http://172.16.10.9:8080/pltc/report/report_date.jsp">
+    		<div id="canvasDivLine"><div id="shell-area2d_3139416763376" style="padding: 0px; margin: 0px; overflow: hidden; position: relative; width: 950px; height: 700px;"><canvas id="area2d_3139416763376" style="-webkit-text-size-adjust: none;" width="950" height="700"><p>Your browser does not support the canvas element</p></canvas><div style="border: 2px solid rgb(40, 125, 125); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; position: absolute; z-index: 0; text-align: left; padding: 4px 5px; cursor: pointer; font-size: 12px; color: black; opacity: 1; -webkit-transition: opacity 0.3s ease-out 0s, top 0.1s ease-out 0s, left 0.1s ease-out 0s; transition: opacity 0.3s ease-out 0s, top 0.1s ease-out 0s, left 0.1s ease-out 0s; top: 554.5px; left: 458px; visibility: visible; background-color: rgba(239, 239, 239, 0.85098);"><span style="color:white;background-color:#287d7d;font-size:20px;font-weight:bold;">￥0</span></div></div></div>
+    	</a>
+    </div>
+    <div style="border: 0px solid black;margin-top:50px;">
+    	<a href="http://172.16.10.9:8080/pltc/report/weekReportAction?order=date&sort=desc&msort=mdesc">
+    		<div id="canvasDiv"><div id="shell-pie2d_6756416763339" style="padding: 0px; margin: 0px; overflow: hidden; position: relative; width: 950px; height: 800px;"><canvas id="pie2d_6756416763339" style="-webkit-text-size-adjust: none;" width="950" height="800"><p>Your browser does not support the canvas element</p></canvas></div></div>
+    	</a>
+    </div>
+    <div style="width:260px;height: 25px;position: absolute;margin-top:-740px;margin-left:700px;font-size:25px;font-family:微软雅黑;line-height:25px;font-weight: 700;">
+    今日出菜量：0 (份)
+    </div>
+    </div>
+  
+  <script type="text/javascript">
+  //隐藏微信右上角的三个点
+	function onBridgeReady(){
+		WeixinJSBridge.call('hideOptionMenu');
+	}
+
+	 if (typeof WeixinJSBridge == "undefined"){
+	     if( document.addEventListener ){
+	         document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+	     }else if (document.attachEvent){
+	         document.attachEvent('WeixinJSBridgeReady', onBridgeReady); 
+	         document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+	     }
+	 }else{
+	     onBridgeReady();
+	 }
+  </script>
+</body></html>

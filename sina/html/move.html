@@ -1,0 +1,120 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>move</title>
+<script src="../js/jquery-2.1.1.min.js"></script>
+<script>
+function MoveImgManager()
+{
+	this.speed = 300;
+	
+	var moveInterval = null;
+	var moveArray = new Array();
+	
+	this.init = function(speed)
+	{
+		this.speed = speed;
+	};
+	
+	this.add = function(moveImg)
+	{
+		moveArray.push(moveImg);
+	};
+	
+	this.move = function()
+	{
+		if(moveArray.length > 0)
+		{
+			for(var i = 0; i < moveArray.length ; i ++)
+			{
+				var t = moveArray[i];
+				t.move();
+			}
+		}
+	};
+	
+	this.startMove = function()
+	{
+		moveInterval = setInterval(this.move,this.speed);
+	};
+};
+function MoveImg()
+{
+	this.src = "fd.jpg";
+	this.id = "aaa";
+	this.alt = "aaa";
+	
+	var xPos = 300;
+	var yPos = 200;
+	var img = null;
+	var step = 1;
+	var delay = 30; 
+	var height = document.documentElement.clientHeight;
+	var width = document.body.clientWidth;
+	var Hoffset = 0;
+	var Woffset = 0;
+	var yon = 0;
+	var xon = 0;
+	
+	this.init = function(src, id, speed,left,top, width, height, alt)
+	{
+		this.src = src;
+		this.id = id;
+		this.alt = alt;
+		step = speed;
+		
+		xPos = left;
+		yPos = top;
+		img = $('<div style="position:absolute;left:' + left + ';top:' + top + ';"><img height="' + height + '" width="' + width + '" alt="' + alt + '" id="' + id + '" src="' + src + '" /></div>');
+		$("body").append(img);
+		Hoffset = $(img).get(0).offsetHeight;
+		Woffset = $(img).get(0).offsetWidth;
+	};
+	
+	this.move = function()
+	{
+		$(img).css("left", xPos + document.body.scrollLeft + "px");
+		$(img).css("top", yPos + document.body.scrollTop + "px");
+
+		if (yon)
+			{yPos = yPos + step;}
+		else 
+			{yPos = yPos - step;}
+		if (yPos < 0) 
+			{yon = 1;yPos = 0;}
+		if (yPos >= (height - Hoffset)) 
+			{yon = 0;yPos = (height - Hoffset);}
+		if (xon) 
+			{xPos = xPos + step;}
+		else 
+			{xPos = xPos - step;}
+		if (xPos < 0) 
+			{xon = 1;xPos = 0;}
+		if (xPos >= (width - Woffset)) 
+			{xon = 0;xPos = (width - Woffset);}
+	};
+
+}
+$(function(){
+	var moveImg = new MoveImg();
+	moveImg.init("http://www.baidu.com/img/bdlogo.gif","aaa",1,"10","10","250px","80px","aaa");
+	$("#aaa").click(function(){
+		alert(100);
+	});
+	
+	var moveImg2 = new MoveImg();
+	moveImg2.init("http://www.baidu.com/img/bdlogo.gif","sjdh",1,"1000","500","123px","59px","bbb");
+	
+	var moveManager = new MoveImgManager();
+	moveManager.init(100);
+	
+	moveManager.add(moveImg);
+	moveManager.add(moveImg2);
+	moveManager.startMove();
+});
+</script>
+</head>
+<body>
+</body>
+</html>

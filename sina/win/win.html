@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="css/win.css" type="text/css"/>
+	<script type="text/javascript" src="js/jquery-1.10.1.min.js"></script>    
+	<script type="text/javascript" src="js/win.js"></script>  
+<title>window</title>
+<script>
+	var f = function(){
+		alert("先调回调函数哈哈哈哈");
+	}
+	function t(){
+		win.setTitle("哈哈哈哈哈")
+		.setSize(1000,800)
+		.setColor('#000000')
+		.setCallBack(f)
+		.lock()
+		//.setTitleImg("images/menu2.png")
+		.open('child.php?name=' + $("#name_parent").val(),function(ret){
+			if(ret){
+				$("#debug").html(ret);
+			}
+		})
+		.center()
+		.resizewindow();
+	}
+
+	function cen(){
+		setTimeout(function(){
+			win.center();
+		},2000);
+	}
+	//win.alert('body')
+	</script>
+</head>
+<body>
+<input type="text" id="name_parent" value="哈喽">
+<br>
+<input type="button" onclick="t()" value="click me"><br/><br/>
+<div id="debug"></div>
+</body>
+</html>

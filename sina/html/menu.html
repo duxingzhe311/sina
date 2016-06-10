@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>自定义多级右键菜单</title>
+<link rel="stylesheet" href="../js/rightmenu/right_menu.css" type="text/css"></link>
+<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script></head>
+<script type="text/javascript" src="../js/rightmenu/right_menu.js"></script>
+<script type="text/javascript">
+$(function()
+		{
+			var menu = new Tbs_Menu();
+			var datas = {
+					title		:		"自定义右键菜单",
+					datas		:		
+					[
+						{
+							title	:		'first',
+							datas	:
+							[
+								{
+									title		:		'00000000000001',
+									func		:		'func1'
+								},
+								{
+									title		:		'00000000002',
+									func		:		'func1'
+								},
+								{
+									title		:		'00000000000000003',
+									func		:		'func1'
+								}
+							]
+						},
+						{
+							title		:		"second",
+							datas		:
+							[
+								{
+									title		:		'11111111',
+									func		:		'func1'
+								},
+								{
+									title		:		'11112222',
+									func		:		'func1'
+								},
+								{
+									title		:		'11113333',
+									func		:		'func1'
+								}
+							]
+						},
+						{
+							title		:		"third",
+							datas		:
+							[
+								{
+									title		:		'22221111',
+									func		:		'func1'
+								},
+								{
+									title		:		'22222222',
+									func		:		'func1'
+								},
+								{
+									title		:		'22223333',
+									func		:		'func1'
+								}
+							]
+						},
+						{
+							title		:		"fourth",
+							func		:		"func1"
+						}
+					]
+			};
+			menu.init(datas,onrightclick_fun);
+			menu.bind([document.getElementById("test"),document.getElementById("test2")]);
+			
+			function onrightclick_fun()
+			{
+				alert("这个函数里面可以做一些初始化工作,可以通过getSrcElement方法得到触发邮件事件的元素" + menu.getSrcElement());
+			}
+		});
+		function func1()
+		{
+			alert(1);
+		}
+		</script>
+		</head>
+		<body>
+		<div id="test" style="width:30%;height:30%;background-color:red"></div>
+		<div id="test2" style="width:30%;height:30%;background-color:green"></div>
+		</body>
+		</html>
+

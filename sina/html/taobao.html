@@ -1,0 +1,65 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>固定</title>
+<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script></head>
+<style>
+*{
+	padding:0;
+	margin:0;
+}
+.wrap{
+	height:500%;
+	width:100%;
+	background:#A9F5AC;
+	margin: 0px;
+	padding: 0px;
+}
+.con{
+	height:300px;
+	width:100%;
+	border:1px solid #fff;
+}
+.menu{
+	height:20px;
+	width:600px;
+	background:#999;
+}
+.menuFixed{
+	position:fixed;
+	top:0;
+	height:20px;
+}
+#menu_wrap{
+	height:300px;
+	width:100%;
+	background:#333;
+}
+</style>
+<script>
+$(function()
+{
+	$(window).scroll(function () {
+		var menu_top = $('#menu_wrap').offset().top;
+		if($(window).scrollTop() >= menu_top)
+			$('.menu').addClass('menuFixed')
+		else
+			$('.menu').removeClass('menuFixed')
+	});
+});
+</script>
+</head>
+<body>
+<div class='wrap'>
+	<div class='con'>
+		
+	</div>
+	<div id='menu_wrap'>
+		<div class='menu'>
+			模仿淘宝的		评价    详情
+		</div>
+	</div>
+</div>
+</body>
+</html>

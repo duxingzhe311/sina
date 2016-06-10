@@ -1,0 +1,62 @@
+
+        .table {
+			margin-bottom: 15px;
+			width: 100%;
+			border-collapse: collapse;
+         }
+		.table_header td {
+			padding: 5px 10px;
+			color: #454b63;
+			border-top: 1px solid #e3e7f0;
+			font-size: 1.1em;
+			font-weight: bold;
+			font-family: Î¢ÈíÑÅºÚ;
+			height: 40px;
+		}
+		.row1 td {
+			padding: 5px 10px;
+			color: #595c6f;
+			font-family: Î¢ÈíÑÅºÚ;
+			border: 1px solid #d9d9d9;
+			font-weight: 400;
+			height: 40px;
+         }
+		.row1{
+			padding: 5px 10px;
+			color: #595c6f;
+			font-family: Î¢ÈíÑÅºÚ;
+			border: 1px solid #d9d9d9;
+			font-weight: 400;
+			height: 40px;
+		}
+		.row1:hover{
+			background-color:#f0eee2;
+		}
+		
+		.paging{
+			border-radius:5px;
+			background-color:#16a4fa;
+			border:3px solid #16a4fa;
+			text-decoration: none;
+			font-family: Î¢ÈíÑÅºÚ;
+			font-size:18px;
+			color:white;
+		}
+		.paging:hover{
+			border-radius:5px;
+			background-color:#f2795a;
+			border:3px solid #f2795a;
+			text-decoration: none;
+			font-family: Î¢ÈíÑÅºÚ;
+			font-size:18px;
+			color:black;
+		}
+	.curA{
+			border-radius:5px;
+			background-color:#f2795a;
+			border:3px solid #f2795a;
+			text-decoration: none;
+			font-family: Î¢ÈíÑÅºÚ;
+			font-size:18px;
+			color:black;
+		}

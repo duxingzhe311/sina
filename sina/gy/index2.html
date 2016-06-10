@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,minimal-ui">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>供应链</title>
+<style type="text/css">
+* {
+	margin: 0px;
+	padding: 0px;
+}
+html {
+	text-decoration: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	line-height: 1.8em;
+	text-decoration: none;
+}
+div{
+	margin:0px;
+	padding:0px;
+}
+body {
+	height:100%; 
+	overflow:hidden; 
+	margin:0px;
+	padding:0px;
+}
+img {
+	border: 0px;
+}
+
+#wrapper{
+	height: 100%;
+	width: 100%;
+	position:absolute;
+}
+#main{
+	width: 100%;
+	height: 93%;
+	position:absolute;
+}
+#left{
+	width: 25%;
+	height: 100%;
+	float: left;
+	overflow:auto;
+}
+#right{
+	height: 100%;
+	width:75%;
+	float:left;
+	overflow:auto;
+}
+#bottom{
+	height: 7%;
+	width:100%;
+	bottom:0;
+	position:fixed; 
+	bottom:0; 
+	left:0;
+}
+#price{
+	width: 80%;
+	height: 100%;
+	float:left;
+}
+#selectok{
+	width: 20%;
+	height: 100%;
+	float:right;
+	font-size:1.8em;
+	font-weight:bold;
+	text-align:center;
+	background-color: red;
+}
+.list-group {
+	background: #fff;
+	padding: 0 15px;
+	list-style:none;
+}
+.list-group li {
+	height: 45px;
+	line-height: 46px;
+	font-size: 14px;
+	border-bottom: 1px solid #eee
+}
+.list-group li:last-child {
+	border: 0;
+}
+.list-group li.selected a {
+	color: #fe2947;
+}
+.list-group a {
+	color: #4d4d4d;
+	text-decoration:none;
+	display: block;
+}
+.list-group .left-span {
+	position: absolute;
+	max-width: 10em;
+	height: 43px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.list-group .right-value {
+	display: block;
+	padding-right: 8px;
+	text-align: right;
+	color: #999;
+	font-size: 14px
+}
+
+.listgroup{
+	border: 0;
+	list-style:none;
+}
+.listgroup li {
+	position: relative;
+	padding: 0 0 0 10px
+}.listgroup .wrap {
+	border-bottom: 1px solid #eee;
+	padding: 10px 0;
+	position: relative
+}
+.listgroup .list-img {
+	display: block;
+	position: absolute;
+	left: 10px;
+	top: 10px;
+	width: 50px;
+	height: 50px;
+	background: url(./img/def.jpg) center center no-repeat;
+	background-size: 50px 50px
+}.listgroup .list-img div {
+	width: 50px;
+	height: 50px
+}.listgroup .list-content {
+	margin-left: 70px
+}.listgroup.list-content.title {
+	color: #ff2e4b;
+	font-size: 16px;
+	font-weight: 400
+}.listgroup .list-content .description {
+	color: #999;
+	font-size: 12px;
+	margin: 3px 0
+}.listgroup .list-content .price {
+	color: #ff2e4b;
+	font-size: 15px;
+	font-weight: 700
+}
+.btn {
+	border: 0;
+	background: #fff
+}
+.btn i:before {
+	font-size: 15px
+}
+
+.item-add {
+	width: 32px;
+	height: 32px;
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	overflow: hidden
+}
+
+.item-add.show-all {
+	width: 86px
+}
+
+.-minus,.item-count,.-plus {
+	position: absolute;
+	bottom: 0
+}
+
+.-minus {
+	right: 55px
+}
+
+.-plus {
+	right: 0
+}
+
+.-plus.disable {
+	color: #999
+}
+
+.-minus,.-plus {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: 1px solid #dadee2;
+	text-align: center;
+	line-height: 32px
+}
+
+.-minus i,.-plus i {
+	color: #fe2947;
+	font-weight: 700
+}
+
+.item-count {
+	width: 25px;
+	height: 30px;
+	text-align: center;
+	line-height: 32px;
+	right: 30px;
+	color: #4d4d4d;
+	font-size: 14px;
+	font-weight: 700
+}
+i.icon-plus,i.icon-minus {
+	font-size: 25px;
+}
+</style>
+</head>
+<body>
+<div id='wrapper'>
+	<div id='main'>
+		<div id='left'>
+			<ul class='list-group'>
+				<li>
+					<a href='#'>热菜</a>
+				</li>
+				<li>
+					<a href='#'>热菜</a>
+				</li>
+				<li>
+					<a href='#'>热菜</a>
+				</li>
+				<li>
+					<a href='#'>热菜</a>
+				</li>
+				<li>
+					<a href='#'>热菜</a>
+				</li>
+				<li>
+					<a href='#'>热菜</a>
+				</li>
+				<li>
+					<a href='#'>热菜</a>
+				</li>
+				<li>
+					<a href='#'>热菜</a>
+				</li>
+			</ul>
+		</div>
+		<div id='right'>
+			<ul class='listgroup'>
+				<li>
+					<div class='wrap'>
+						<div class='list-img'>
+						
+						</div>
+						<div class='list-content'>
+							<h4 class='title'>微辣锅底</h4>
+							<p class='description'>已售<strong>100</strong>份</p>
+							<p class='price'>￥90</p>
+						</div>
+					</div>
+					<div class='item-add show-all'>
+						<button class='btn -minus'>
+							<i class='icon-minus'>-</i>
+						</button>
+							<span class='item-count'>5</span>
+						<button class='btn -plus'>
+							<i class='icon-plus'>+</i>
+						</button>
+					</div>
+				</li>
+				<li>
+					<div class='wrap'>
+						<div class='list-img'>
+						
+						</div>
+						<div class='list-content'>
+							<h4 class='title'>微辣锅底</h4>
+							<p class='description'>已售<strong>100</strong>份</p>
+							<p class='price'>￥90</p>
+						</div>
+					</div>
+					<div class='item-add show-all'>
+						<button class='btn -minus'>
+							<i class='icon-minus'>-</i>
+						</button>
+							<span class='item-count'>5</span>
+						<button class='btn -plus'>
+							<i class='icon-plus'>+</i>
+						</button>
+					</div>
+				</li>
+				<li>
+					<div class='wrap'>
+						<div class='list-img'>
+						
+						</div>
+						<div class='list-content'>
+							<h4 class='title'>微辣锅底</h4>
+							<p class='description'>已售<strong>100</strong>份</p>
+							<p class='price'>￥90</p>
+						</div>
+					</div>
+					<div class='item-add show-all'>
+						<button class='btn -minus'>
+							<i class='icon-minus'>-</i>
+						</button>
+							<span class='item-count'>5</span>
+						<button class='btn -plus'>
+							<i class='icon-plus'>+</i>
+						</button>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+	<div id='bottom'>
+		<div id='price'>
+			共<span id='priceall'>100</span>元
+		</div>
+		<div id='selectok'>
+			<div style='height: 18px;'></div>
+			选好了
+		</div>
+	</div>
+</div>
+<div id='details' class='shopmenu-cart-list' style='max-height: 525px; overflow: hidden;display: none;'>
+	
+</div>
+<div id="info" style="z-index: 5000;"></div>
+</body>
+<script src="js/util/jquery-2.1.1.min.js"></script>
+<script src="js/util/ArrayList.js"></script>
+<script src="js/util/Arrays.js"></script>
+<script src="js/util/JSON.js"></script>
+<script src="js/util/Map.js"></script>
+<script src="js/util/StringBuilder.js"></script>
+<script src="js/util/StringReader.js"></script>
+<script src="js/util/System.js"></script>
+<script src="js/util/MD5.js"></script>
+<script src="js/util/Util.js"></script>
+
+<script type="text/javascript">
+var jsarr = new JSONArray();
+
+
+
+jsarr.parse('[{"age":10,"name":"james"},{"age":15,"name":"yaoming"}]');
+
+//jsarr.put({"age":10,"name":"james"});
+//jsarr.put({"age":15,"name":"yaoming"});
+$("#info").html(jsarr.toString());
+$("#info").text(jsarr.toString());
+alert(jsarr.length());
+alert(jsarr.toString());
+
+var json = new JSONObject();
+json.parse('{"age":10,"name":"james"}');
+alert(json.toString());
+</script>
+</html>

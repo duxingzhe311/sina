@@ -1,0 +1,39 @@
+//$postStr = "<?xml version='1.0' encoding='utf-8'?><req><FromUserName>licaicai</FromUserName><ToUserName>chenxb</ToUserName><Content>hello</Content><EventKey>text</EventKey><Event>subscribe</Event></req>";
+//订阅
+$postStr = "<xml><ToUserName><![CDATA[gh_86ec80d052a9]]></ToUserName><FromUserName><![CDATA[owU1CtyskLGCUae1ap6KY3I7JKy8]]></FromUserName><CreateTime>1409209803</CreateTime><MsgType><![CDATA[event]]></MsgType><Event><![CDATA[subscribe]]></Event><EventKey><![CDATA[]]></EventKey></xml>";
+
+//取消订阅
+$postStr = "<xml><ToUserName><![CDATA[gh_86ec80d052a9]]></ToUserName><FromUserName><![CDATA[owU1CtyskLGCUae1ap6KY3I7JKy8]]></FromUserName><CreateTime>1409209971</CreateTime><MsgType><![CDATA[event]]></MsgType><Event><![CDATA[unsubscribe]]></Event><EventKey><![CDATA[]]></EventKey></xml>";
+
+//文字
+$postStr = "<xml><ToUserName>gh_f348</ToUserName><FromUserName>oHRB7iU</FromUserName><CreateTime>1397444426</CreateTime><MsgType>text</MsgType><Content>哈喽</Content><MsgId>6001978107847631964</MsgId></xml>";
+//图片
+$postStr = "<xml><ToUserName>gh_f348</ToUserName><FromUserName>oHRB7iU</FromUserName><CreateTime>1397443941</CreateTime><MsgType>image</MsgType><PicUrl>http://mmbiz.qpic.c</PicUrl><MsgId>600197</MsgId><MediaId>LZ8P8VOYc</MediaId></xml>";
+
+$postStr = "<xml><ToUserName><![CDATA[gh_86ec80d052a9]]></ToUserName><FromUserName><![CDATA[owU1Ct9P1wYJJRaMCWiiSc7-rIaM]]></FromUserName><CreateTime>1406380645</CreateTime><MsgType><![CDATA[image]]></MsgType><PicUrl><![CDATA[http://mmbiz.qpic.cn/mmbiz/qfURnVt8ibiate1jm6QGW5QupVtibibOzic4j6G6ht0iaBqTXSAVCNDT9cdSicGapQzdf6PmcaaJjGYxlVfuP9K2fib9NA/0]]></PicUrl><MsgId>6040358876202991763</MsgId><MediaId><![CDATA[tqjqYL9vFX7g9u1rWpVzJ47sK7IvhzKkJoEdO_XQw-lFqyX8HohQtfXNolTBX0zg]]></MediaId></xml>";
+
+<xml><ToUserName><![CDATA[gh_86ec80d052a9]]></ToUserName>
+<FromUserName><![CDATA[owU1Ct9P1wYJJRaMCWiiSc7-rIaM]]></FromUserName>
+<CreateTime>1406380645</CreateTime>
+<MsgType><![CDATA[image]]></MsgType>
+<PicUrl><![CDATA[http://mmbiz.qpic.cn/mmbiz/qfURnVt8ibiate1jm6QGW5QupVtibibOzic4j6G6ht0iaBqTXSAVCNDT9cdSicGapQzdf6PmcaaJjGYxlVfuP9K2fib9NA/0]]></PicUrl>
+<MsgId>6040358876202991763</MsgId>
+<MediaId><![CDATA[tqjqYL9vFX7g9u1rWpVzJ47sK7IvhzKkJoEdO_XQw-lFqyX8HohQtfXNolTBX0zg]]></MediaId>
+</xml>
+
+
+CREATE TABLE `user` (
+  `Id` int(11) NOT NULL AUTO_INCREMENT,
+  `UserName` varchar(100) DEFAULT NULL,
+  `Password` varchar(100) DEFAULT NULL,
+  `RealName` varchar(100) DEFAULT NULL,
+  `CreateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`Id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8
+
+CREATE TABLE `_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Info` varchar(2000) DEFAULT NULL,
+  `RecordTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8

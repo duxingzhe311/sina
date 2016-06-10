@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>窗口拖拽（改变大小/最小化/最大化/还原/关闭）</title>
+<link rel="stylesheet" href="css/css.css" type="text/css"></link>
+
+
+<script type="text/javascript" src="../js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript" src="js/dlg.js"></script>
+<script type="text/javascript">
+
+function show(){
+	dlg.setTitle("我是标题").setSize(800,600).open("b.html");
+}
+function showLo(){
+	dlg.showLoading(200,300);
+}
+function hideLo(){
+	dlg.hideLoading();
+}
+</script>
+</head>
+	<body>
+		<input type="button" value="click me" onclick="show()">
+		<input type="button" value="show" onclick="showLo()">
+		<input type="button" value="hide" onclick="hideLo()">
+	</body>
+</html>
