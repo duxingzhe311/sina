@@ -1,11 +1,11 @@
 <?php
-//define('SAE_MYSQL_HOST_M', "localhost");
-//define('SAE_MYSQL_PORT', "3306");
-//define('SAE_MYSQL_USER', "root");
-//define('SAE_MYSQL_PASS', "password_pinglian");
+define('SAE_MYSQL_HOST_M', "127.0.0.1");
+define('SAE_MYSQL_PORT', "3306");
+define('SAE_MYSQL_USER', "root");
+define('SAE_MYSQL_PASS', "cloud_angel");
 
 class DBUtil{
-	public static $DB_NAME = "app_rockets311";
+	public static $DB_NAME = "hcc";
 
 	private function __construct(){
 
