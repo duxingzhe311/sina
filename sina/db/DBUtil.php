@@ -5,7 +5,7 @@ define('SAE_MYSQL_USER', "root");
 define('SAE_MYSQL_PASS', "cloud_angel");
 
 class DBUtil{
-	public static $DB_NAME = "hcc";
+	public static $DB_NAME = "test";
 
 	private function __construct(){
 

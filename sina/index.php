@@ -27,7 +27,7 @@
 		echo "创建数据库连接失败！";			
 		return;
 	}
-	$result = $dbUtil->excute("SELECT * FROM system_user");
+	$result = $dbUtil->excute("SELECT * FROM user");
 	echo '<h4>用户列表</h4>';
 		?>
 			<a href="user/user_edit.php">注册用户</a>
@@ -39,10 +39,10 @@
 					$id = $row['Id'];
 					?>
 					<tr>
-						<td><?php echo $row['phone'] ?></td>
-						<td><?php echo $row['password'] ?></td>
-						<td><?php echo $row['nick_name'] ?></td>
-						<td><?php echo $row['create_time'] ?></td>
+						<td><?php echo $row['UserName'] ?></td>
+						<td><?php echo $row['Password'] ?></td>
+						<td><?php echo $row['RealName'] ?></td>
+						<td><?php echo $row['CreateTime'] ?></td>
 						<td><a href="javascript:edlt('<?php echo $id ?>')">编辑</a>|<a href="javascript:del('<?php echo $id ?>')">删除</a></td>
 					</tr>
 					<?php
