@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,minimal-ui">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<title>testP1</title>
+</head>
+<body>
+result:<textarea id="scanRes" style="width:60%;height:300px;"></textarea>
+<br>
+<input type="button" value="scan" id="btnStartScan"style="width:80px;height:60px;">
+<br>
+<input type="button" value="test printer" id="btnPrinterTest" style="width:80px;height:60px;">
+<input type="button" value="alert" id="btnAlert" style="width:80px;height:60px;">
+</body>
+<script src="../shell/js/shell.js"></script>
+<script src="../shell/js/printer.js"></script>
+<script>
+///////////////////////////////////////////////////////////////////////////////////////////////
+function testPosPrinter(){
+	var pd = new PrintData();
+	pd
+	.add(new PrintItem().setDataType(DataType.BOLD_ON | DataType.ALIGN_CENTER | DataType.STRING).setData("我是一个单店"))//加粗|居中|字符串类型
+	.add(new PrintItem().setDataType(DataType.LF)) //换行
+	.add(new PrintItem().setDataType(DataType.BOLD_ON | DataType.STRING).setData("消费单"))//加粗|字符串类型
+	.add(new PrintItem().setDataType(DataType.LF))//换行
+	.add(new PrintItem().setDataType(DataType.BOLD_OFF))//取消加粗,注意加粗之后一定要取消加粗
+	.add(new PrintItem().setDataType(DataType.ALIGN_LEFT | DataType.STRING).setData("会员卡号：   8888********0001"))//居左|字符串类型
+	.add(new PrintItem().setDataType(DataType.LF))//换行
+	.add(new PrintItem().setDataType(DataType.STRING).setData("手机号:      130****5386"))
+	.add(new PrintItem().setDataType(DataType.LF))
+	.add(new PrintItem().setDataType(DataType.STRING).setData("--------------------------------"))
+	.add(new PrintItem().setDataType(DataType.LF))
+	.add(new PrintItem().setDataType(DataType.STRING).setData("现金消费：   2000元"))
+	.add(new PrintItem().setDataType(DataType.LF))
+	.add(new PrintItem().setDataType(DataType.STRING).setData("--------------------------------"))
+	.add(new PrintItem().setDataType(DataType.LF))
+	.add(new PrintItem().setDataType(DataType.STRING).setData("卡内余额:    8800元"))
+	.add(new PrintItem().setDataType(DataType.LF))
+	.add(new PrintItem().setDataType(DataType.STRING).setData("卡内积分:    0积分"))
+	.add(new PrintItem().setDataType(DataType.LF))
+	.add(new PrintItem().setDataType(DataType.STRING).setData("--------------------------------"))
+	.add(new PrintItem().setDataType(DataType.LF))
+	.add(new PrintItem().setDataType(DataType.STRING).setData("小票编码:    1479786938939"))
+	.add(new PrintItem().setDataType(DataType.LF))
+	.add(new PrintItem().setDataType(DataType.STRING).setData("操作时间:    2016-11-24 11:28:30"))
+	.add(new PrintItem().setDataType(DataType.LF))
+	.add(new PrintItem().setDataType(DataType.STRING).setData("操作人员:    邓肯"))
+	.add(new PrintItem().setDataType(DataType.LF))
+	.add(new PrintItem().setDataType(DataType.STRING).setData("--------------------------------"))
+	.add(new PrintItem().setDataType(DataType.LF))
+	.add(new PrintItem().setDataType(DataType.ALIGN_CENTER | DataType.STRING).setData('本系统由"慧客科技"提供'))//居中|字符串类型
+	.add(new PrintItem().setDataType(DataType.LF))
+	.add(new PrintItem().setDataType(DataType.ALIGN_CENTER | DataType.STRING).setData('010-56228037'))
+	.add(new PrintItem().setDataType(DataType.LF3));//3个换行符
+	return pd.toJSONString();
+};
+
+function testPosPrinter2(){
+	var pd = new PrintData();
+	pd.addln(new PrintItem().setDataType(DataType.ALIGN_CENTER | DataType.STRING).setData("我是居中的"))
+	.addln(new PrintItem().setDataType(DataType.BOLD_ON | DataType.ALIGN_CENTER | DataType.STRING).setData("我是加粗居中的"))
+	.boldOff().addln(new PrintItem().setDataType(DataType.ALIGN_LEFT | DataType.STRING).setData("我是居左的"))
+	.addln(new PrintItem().setDataType(DataType.ALIGN_RIGHT | DataType.STRING).setData("我是居右的"))
+	.addln(new PrintItem().setDataType(DataType.ALIGN_LEFT | DataType.STRING).setData("我是有空格             的"))
+	.addDotLine()
+	.addStringln("我是一个字符串")
+	.addTail()
+	.ln3();
+	return pd.toJSONString();
+};
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+var G = function(id){
+	return document.getElementById(id);
+};
+
+function posCallBackOnRecieve(v){
+	G("scanRes").value = v;
+};
+
+G("btnStartScan").onclick = function(){
+	if('undefined' != typeof PosScanner){
+		PosScanner.startScan();
+	}
+};
+
+G("btnPrinterTest").onclick = function(){
+	var res = testPosPrinter2();
+	G("scanRes").value = res;
+	
+	if('undefined' != typeof PosPrinter){
+		var data = {"printItems":[{"data":"测试店2","dataType":1216},{"dataType":2},{"data":"消费单","dataType":1216},{"dataType":2},{"data":"会员卡号：  6201********0001","dataType":576},{"dataType":2},{"data":"手机号：    133****0000","dataType":576},{"dataType":2},{"data":"--------------------------------","dataType":64},{"dataType":2},{"data":"储值消费：  1.0元","dataType":576},{"dataType":2},{"data":"--------------------------------","dataType":64},{"dataType":2},{"data":"卡内余额：  21570.2元","dataType":576},{"dataType":2},{"data":"  (含赠送金额:300.0元)","dataType":64},{"dataType":2},{"data":"卡内积分：  500.0积分","dataType":576},{"dataType":2},{"data":"--------------------------------","dataType":64},{"dataType":2},{"data":"小票编码：  1490847349075","dataType":576},{"dataType":2},{"data":"操作时间：  2017-03-30 12:15:49","dataType":576},{"dataType":2},{"data":"操作人员：   1","dataType":576},{"dataType":2},{"data":"--------------------------------","dataType":64},{"dataType":2},{"data":"本系统由\"慧客科技\"提供","dataType":1088},{"dataType":2},{"data":"010-56228037","dataType":1088},{"dataType":2},{"dataType":8}]};
+		PosPrinter.print(res);
+	}else{
+		alert("无打印机!");
+	}
+};
+
+G("btnAlert").onclick = function(){
+	if('undefined' != typeof PosUtils){
+		PosUtils.alert("hello!");
+	}
+};
+</script>
+</html>
