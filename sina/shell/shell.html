@@ -79,13 +79,14 @@ function testPosPrinter2(){
 var G = function(id){
 	return document.getElementById(id);
 };
-
+//在android中调用，所以方法名不能改。
 function posCallBackOnRecieve(v){
 	G("scanRes").value = v;
 };
 
 G("btnStartScan").onclick = function(){
 	if('undefined' != typeof PosScanner){
+		//PosScanner是在android中定义的对象，这里可以直接调用
 		PosScanner.startScan();
 	}
 };
@@ -93,8 +94,8 @@ G("btnStartScan").onclick = function(){
 G("btnPrinterTest").onclick = function(){
 	var res = testPosPrinter();
 	G("scanRes").value = res;
-	
 	if('undefined' != typeof PosPrinter){
+	//PosPrinter是在android中定义的对象，这里可以直接调用
 		PosPrinter.print(res);
 	}else{
 		alert("无打印机!");
