@@ -86,6 +86,7 @@
 				<a target="_blank" href='../html/18/18.html'>18</a>
 				<a target="_blank" href='../html/19/19.html'>19</a>
 				<a target="_blank" href='../html/20/20.html'>20</a>
+				<a target="_blank" href='../html/circle.html'>环形进度</a>
 			</div>
 		</div>
 		<div id="right">
