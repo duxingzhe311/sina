@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>chart</title>
+</head>
+<body>
+<div id="echarts" style="width: 848px;height:300px;"></div>
+</body>
+<script type="text/javascript" src="echarts.min.js"></script>
+<script>
+var locationUrl = location.href;
+var queryString = locationUrl.substring(locationUrl.lastIndexOf("?") + 1);
+var queryObj = {};
+if(queryString){
+	var kv = queryString.split("&");
+
+	for(var i in kv){
+		var ti = kv[i];
+		var index = ti.indexOf("=");
+		var k = ti.substring(0,index);
+		var v = ti.substring(index + 1);
+		if(k){
+			if(isNaN(v))
+				eval("queryObj." + k + " = '" + v + "'");
+			else
+				eval("queryObj." + k + " = " + v);
+		}
+	}
+}
+var by_day = queryObj.by_day;
+var myChart = echarts.init(document.getElementById('echarts'));
+
+var option = {};
+if("true" == by_day){
+	option = {
+    title: {
+        text: ''
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['库里','杜兰特','格林','汤普森','帕楚利亚']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['2017-05-22','2017-05-27','2017-05-28','2017-05-29','2017-05-30','2017-05-31','2017-06-01']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'库里',
+            type:'line',
+            stack: '总量',
+            data:[120, 132, 101, 134, 90, 230, 210]
+        },
+        {
+            name:'杜兰特',
+            type:'line',
+            stack: '总量',
+            data:[220, 182, 191, 234, 290, 330, 310]
+        },
+        {
+            name:'格林',
+            type:'line',
+            stack: '总量',
+            data:[150, 232, 201, 154, 190, 330, 410]
+        },
+        {
+            name:'汤普森',
+            type:'line',
+            stack: '总量',
+            data:[320, 332, 301, 334, 390, 330, 320]
+        },
+        {
+            name:'帕楚利亚',
+            type:'line',
+            stack: '总量',
+            data:[820, 932, 901, 934, 1290, 1330, 1320]
+        }
+    ]
+ };
+}else{
+option = {
+    title: {
+        text: ''
+    },
+    tooltip: {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['库里','杜兰特','格林','汤普森','帕楚利亚']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    toolbox: {
+        feature: {
+            saveAsImage: {}
+        }
+    },
+    xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: ['库里','杜兰特','格林','汤普森','帕楚利亚']
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [
+        {
+            name:'库里',
+            type:'line',
+            stack: '总量',
+            data:[101, 134, 90, 230, 210]
+        },
+        {
+            name:'杜兰特',
+            type:'line',
+            stack: '总量',
+            data:[191, 234, 290, 330, 310]
+        },
+        {
+            name:'格林',
+            type:'line',
+            stack: '总量',
+            data:[201, 154, 190, 330, 410]
+        },
+        {
+            name:'汤普森',
+            type:'line',
+            stack: '总量',
+            data:[301, 334, 390, 330, 320]
+        },
+        {
+            name:'帕楚利亚',
+            type:'line',
+            stack: '总量',
+            data:[901, 934, 1290, 1330, 1320]
+        }
+    ]
+ };
+}
+myChart.setOption(option);
+</script>
+</html>
