@@ -9,7 +9,7 @@
 <title>testP1</title>
 </head>
 <body>
-result:<textarea id="scanRes" style="width:60%;height:300px;"></textarea>
+result:<textarea id="scanRes" style="width:60%;height:100px;"></textarea>
 <br>
 <input type="button" value="scan" id="btnStartScan"style="width:80px;height:60px;">
 <br>
@@ -17,10 +17,108 @@ result:<textarea id="scanRes" style="width:60%;height:300px;"></textarea>
 <input type="button" value="test printer2" id="btnPrinterTest2" style="width:80px;height:60px;">
 <input type="button" value="test printer3" id="btnPrinterTest3" style="width:80px;height:60px;">
 <input type="button" value="alert" id="btnAlert" style="width:80px;height:60px;">
+<br>
+<br>
+<textarea id="voice" style="width:60%;height:100px;">
+到款通知：支付宝到账120.90元。微信到账230.98元。嚯嚯嚯嚯哈哈！
+一首古诗：春宵，苏轼。春宵一刻值千金，花有清香月有阴。歌管楼台声细细，秋千院落夜沉沉。
+天之道，损有余而补不足，是故虚胜实，不足胜有余。其意博，其理奥，其趣深，天地之象分，阴阳之候列，变化之由表，死生之兆彰，不谋而遗迹自同，勿约而幽明斯契，稽其言有微，验之事不忒，诚可谓至道之宗，奉生之始矣。假若天机迅发，妙识玄通，成谋虽属乎生知，标格亦资于治训，未尝有行不由送，出不由产者亦。然刻意研精，探微索隐，或识契真要，则目牛无全，故动则有成，犹鬼神幽赞，而命世奇杰，时时间出焉。 
+五藏六府之精气，皆上注于目而为之精。精之案为眼，骨之精为瞳子，筋之精为黑眼，血之精力络，其案气之精为白眼，肌肉之精为约束，裹撷筋骨血气之精而与脉并为系，上属于脑，后出于项中。故邪中于项，因逢其身之虚，其人深，则随眼系以入于脑，入手腼则脑转，脑转则引目系急，目系急则目眩以转矣。邪其精，其精所中不相比亦则精散，精散则视岐，视岐见两物。 阴极在六，何以言九。太极生两仪，天地初刨判。六阴已极，逢七归元太素，太素西方金德，阴之清纯，寒之渊源。 
+</textarea>
+<br>
+<select onchange="voice_set_viocer(this)">
+	<option value="xiaoyan">小燕—女青、中英、普通话</option>
+    <option value="xiaoyu">小宇—男青、中英、普通话</option>
+    <option value="catherine">凯瑟琳—女青、英</option>
+    <option value="henry">亨利—男青、英</option>
+    <option value="vimary">玛丽—女青、英</option>
+    <option value="vixy">小研—女青、中英、普通话</option>
+    <option value="xiaoqi" selected="selected">小琪—女青、中英、普通话</option>
+    <option value="vixf">小峰—男青、中英、普通话</option>
+    <option value="xiaomei">小梅—女青、中英、粤语</option>
+    <option value="xiaolin">小莉—女青、中英、台湾普通话</option>
+    <option value="xiaorong">小蓉—女青、中、四川话</option>
+    <option value="xiaoqian">小芸—女青、中、东北话</option>
+    <option value="xiaokun">小坤—男青、中、河南话</option>
+    <option value="xiaoqiang">小强—男青、中、湖南话</option>
+    <option value="vixying">小莹—女青、中、陕西话</option>
+    <option value="xiaoxin">小新—男童、中、普通话</option>
+    <option value="nannan">楠楠—女童、中、普通话</option>
+    <option value="vils">老孙—男老、中、普通话</option>
+</select>
+语速：
+<select onchange="voice_set_speed(this)">
+	<option value="10">10</option>
+	<option value="20">20</option>
+	<option value="30">30</option>
+	<option value="40">40</option>
+	<option value="50" selected="selected">50</option>
+	<option value="60">60</option>
+	<option value="70">70</option>
+	<option value="80">80</option>
+	<option value="90">90</option>
+	<option value="100">100</option>
+</select>
+<br>
+<input type="button" value="voice_start" onclick="voice_start()" style="width:100px;height:60px;">
+<input type="button" value="voice_pause" onclick="voice_pause()" style="width:100px;height:60px;">
+<input type="button" value="voice_resume" onclick="voice_resume()" style="width:100px;height:60px;">
+<input type="button" value="voice_stop" onclick="voice_stop()" style="width:100px;height:60px;">
 </body>
 <script src="../shell/js/shell.js"></script>
 <script src="../shell/js/printer.js"></script>
 <script>
+///////////////////////////////////////////////////////////////////////////////////////////////
+
+function trim(n){
+	if(n==null)
+		return null ;
+	n = n + "";
+	return n.replace(/(^\s+)|\s+$/g,'');
+};
+function voice_set_viocer(o){
+	if('undefined' != typeof PosVoiceUtils){
+		PosVoiceUtils.setViocer(o.value);
+	}else{
+		alert("not support");
+	}
+};
+function voice_set_speed(o){
+	if('undefined' != typeof PosVoiceUtils){
+		PosVoiceUtils.setSpeed(o.value);
+	}else{
+		alert("not support");
+	}
+};
+function voice_start(){
+	if('undefined' != typeof PosVoiceUtils){
+		var val = trim(G("voice").value);
+		PosVoiceUtils.play(val);
+	}else{
+		alert("not support");
+	}
+};
+function voice_resume(){
+	if('undefined' != typeof PosVoiceUtils){
+		PosVoiceUtils.resume();
+	}else{
+		alert("not support");
+	}
+};
+function voice_pause(){
+	if('undefined' != typeof PosVoiceUtils){
+		PosVoiceUtils.pause();
+	}else{
+		alert("not support");
+	}
+};
+function voice_stop(){
+	if('undefined' != typeof PosVoiceUtils){
+		voiceUtils.stop();
+	}else{
+		alert("not support");
+	}
+};
 ///////////////////////////////////////////////////////////////////////////////////////////////
 function testPosPrinter(){
 	var pd = new PrintData();
