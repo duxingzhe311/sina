@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>hammer</title>
+<style>
+#hello{
+width:100%;
+height:50px;
+background-color: #f0f0f0;
+}
+.cs{
+width:100%;
+height:50px;
+background-color: #f0f0f0;
+}
+</style>
+</head>
+<body>
+<div id="hello">
+I am a hello;
+</div>
+<div class="cs">
+I am a hello 0;
+</div>
+<div class="cs">
+I am a hello 1;
+</div>
+</body>
+<script type="text/javascript" src="hammer.min.js"></script>
+<script type="text/javascript">
+new Hammer(document.getElementById("hello")).on('tap',function(ev){
+	alert(ev.target.innerHTML);
+});
+//alert(document.getElementsByClassName("cs"));
+var cs = document.getElementsByClassName("cs");
+alert(cs.length);
+for(var i in cs){
+	new Hammer(cs[i]).on('tap',function(ev){
+		alert(ev.target.innerHTML);
+	});
+}
+/*
+new Hammer(document.getElementsByClassName("cs")).on('tap',function(ev){
+	alert(ev.target.innerHTML);
+});
+ */
+</script>
+</html>
