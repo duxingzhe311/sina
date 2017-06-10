@@ -359,6 +359,7 @@ i.icon-plus,i.icon-minus {
 <link href="js/util/win/css.css" rel="stylesheet" type="text/css" />
 
 <script src="js/util/jquery-2.1.1.min.js"></script>
+<script src="js/util/hammer.min.js"></script>
 <script src="js/util/jquery.fly.min.js"></script>
 <script src="js/util/ArrayList.js"></script>
 <script src="js/util/Map.js"></script>
@@ -379,6 +380,7 @@ $(function(){
 	GyUtils.setMgr(mgr);
 	mgr.init();
 	mgr.show();
+	mgr.bindEvent();
 });
 </script>
 </html>
