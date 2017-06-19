@@ -64,12 +64,19 @@ result:<textarea id="scanRes" style="width:60%;height:100px;"></textarea>
 <input type="button" value="voice_pause" onclick="voice_pause()" style="width:100px;height:60px;">
 <input type="button" value="voice_resume" onclick="voice_resume()" style="width:100px;height:60px;">
 <input type="button" value="voice_stop" onclick="voice_stop()" style="width:100px;height:60px;">
+<br>
+账号：
+<input type="text" value="test_001" id="account" placeholder="请输入账号">
+<input type="button" value="register" onclick="push_register()" style="width:100px;height:60px;">
 </body>
 <script src="../shell/js/shell.js"></script>
 <script src="../shell/js/printer.js"></script>
 <script>
 ///////////////////////////////////////////////////////////////////////////////////////////////
 
+var G = function(id){
+	return document.getElementById(id);
+};
 function trim(n){
 	if(n==null)
 		return null ;
@@ -115,6 +122,15 @@ function voice_pause(){
 function voice_stop(){
 	if('undefined' != typeof PosVoiceUtils){
 		voiceUtils.stop();
+	}else{
+		alert("not support");
+	}
+};
+///////////////////////////////////////////////////////////////////////////////////////////////
+function push_register(){
+	var v = trim(G("account").value);
+	if('undefined' != typeof PosPushUtils){
+		PosPushUtils.registerPush(v);
 	}else{
 		alert("not support");
 	}
@@ -174,9 +190,6 @@ function testPosPrinter2(){
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-var G = function(id){
-	return document.getElementById(id);
-};
 //在android中调用，所以方法名不能改。
 function posCallBackOnRecieve(v){
 	G("scanRes").value = v;
