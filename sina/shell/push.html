@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>消息推送</title>
+</head>
+<body>
+<form action="xg.php" method="POST">
+	<table>
+		<tr>
+			<td>account:</td>
+			<td><input type="text" placeholder="account" id="account" name="account" value="crm_002"></td>
+		</tr>
+		<tr>
+			<td>title:</td>
+			<td><input type="text" placeholder="title" id="title" name="title" value="到账通知"></td>
+		</tr>
+		<tr>
+			<td>content:</td>
+			<td><input type="text" placeholder="content" id="content" name="content" value="支付宝到账100元"></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td>
+				<input type="button" id="submit" value="submit">
+			</td>
+		</tr>
+	</table>
+</form>
+</body>
+<script>
+function ajaxPost(url,sendstr,cb){
+	var __req = null;
+    if (window.XMLHttpRequest){
+    	__req = new XMLHttpRequest();
+    } else if (window.ActiveXObject){
+    	__req = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if(__req){
+    	__req.onreadystatechange = function(){
+            if(4 == __req.readyState){
+	            	var res = __req.responseText;
+	            	try{
+	            		res = JSON.parse(__req.responseText);
+	            	}catch(E){}
+                if(200 == __req.status){
+	                	if('function' == typeof cb){
+	                		cb(res);
+	                	}
+                }else{
+                }
+            }
+        };
+        __req.open("POST", url, true);
+    	__req.setRequestHeader("Content-type","application/x-www-form-urlencoded; charset=utf-8"); 
+        __req.send(sendstr);
+    }
+};
+var G = function(id){
+	return document.getElementById(id);
+};
+G("submit").onclick = function(){
+	var param = "account=" + G("account").value + "&title=" + G("title").value + "&content=" + G("content").value;
+	ajaxPost("xg.php",param,function(ret){
+		alert(ret);
+	});
+};
+</script>
+</html>
