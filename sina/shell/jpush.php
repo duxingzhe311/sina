@@ -17,6 +17,7 @@ $content = $_POST["content"];
 $result = $client->push ()
 	->setPlatform ( 'android' )
 	->setMessage($content,$title,`String`,null)
+// 	->setNotificationAlert($title . "," . $content)
 	->addAlias($account)
 	->send ();
     
