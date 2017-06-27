@@ -5,6 +5,10 @@
 <title>消息推送</title>
 </head>
 <body>
+<select id="server">
+	<option value="xg.php">信鸽</option>
+	<option value="jpush.php">极光</option>
+</select>
 <form action="xg.php" method="POST">
 	<table>
 		<tr>
@@ -61,7 +65,7 @@ var G = function(id){
 };
 G("submit").onclick = function(){
 	var param = "account=" + G("account").value + "&title=" + G("title").value + "&content=" + G("content").value;
-	ajaxPost("jpush.php",param,function(ret){
+	ajaxPost(G("server").value,param,function(ret){
 		alert(ret);
 	});
 };

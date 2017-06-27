@@ -1,7 +1,9 @@
 <?php
 require_once ('XingeApp.php');
-$ACCESS_ID = 2100260958;
-$SECRET_KEY = "286aa7a5bd9005c6b2e1ba65c6f5261c";
+// $ACCESS_ID = 2100260958;
+// $SECRET_KEY = "286aa7a5bd9005c6b2e1ba65c6f5261c";
+$ACCESS_ID = 2100260860;
+$SECRET_KEY = "ba58b338e25f045d8f7fdb911e965131";
 
 $push = new XingeApp ( $ACCESS_ID, $SECRET_KEY );
 
