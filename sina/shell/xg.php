@@ -11,13 +11,16 @@ $account = $_POST["account"];
 $title =  $_POST["title"];
 $content = $_POST["content"];
 
-$message = new Message ();
+$message = new Message();
 $message->setType(Message::TYPE_MESSAGE);
+// $message->setType(Message::TYPE_NOTIFICATION);
 $message->setExpireTime(86400);
 $message->setTitle($title);
 $message->setContent($content);
+// $custom = array('url'=>'http://192.168.1.11:8080/hcc-web/wapMember/scan_pay?payType=wechat');
+$message->setCustom($custom);
 
-$res = $push->PushSingleAccount ( XingeApp::DEVICE_ANDROID, $account, $message );
+$res = $push->PushSingleAccount(XingeApp::DEVICE_ANDROID, $account, $message);
 
 echo var_dump($res);
 ?>

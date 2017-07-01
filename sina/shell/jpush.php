@@ -16,7 +16,8 @@ $content = $_POST["content"];
 // 简单推送示例
 $result = $client->push ()
 	->setPlatform ( 'android' )
-	->setMessage($content,$title,`String`,null)
+// 	->setMessage($content,$title,`String`,null)
+	->addAndroidNotification($content,$title, 1, array("url"=>"http://youwuku.cn/egou/index.php/shangjia/login/appnotice", "audio_url"=>"http://img.bestweshop.com/yuyin/da/cf/shoukuan_0.mp3"))
 // 	->setNotificationAlert($title . "," . $content)
 	->addAlias($account)
 	->send ();
