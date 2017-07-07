@@ -266,7 +266,7 @@ body.page-navbar-fixed-top-sm {
 .content.has-bg .content-title:after {
     background: #fff;
 }
-/*
+
 .content.has-bg .content-bg:before {
     content: '';
     background: url(../img/content-bg-cover.png);
@@ -276,7 +276,7 @@ body.page-navbar-fixed-top-sm {
     top: 0;
     bottom: 0;
 }
-*/
+
 .content.has-bg .container {
     position: relative;
 }
