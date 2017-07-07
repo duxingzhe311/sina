@@ -206,7 +206,7 @@
 		// 百度地图API功能
 		var map = new BMap.Map("map");
 		var point = new BMap.Point(lon, lat);
-		map.centerAndZoom(point, 14);
+		map.centerAndZoom(point, 15);
 		var marker = new BMap.Marker(point);
 		marker.setAnimation(BMAP_ANIMATION_BOUNCE);
 		map.addOverlay(marker);
@@ -250,8 +250,8 @@
 		  arrow.style.position = "absolute";
 		  arrow.style.width = "11px";
 		  arrow.style.height = "10px";
-		  arrow.style.top = "22px";
-		  arrow.style.left = "10px";
+		  arrow.style.top = "17px";
+		  arrow.style.left = "7px";
 		  arrow.style.overflow = "hidden";
 		  div.appendChild(arrow);
 		  map.getPanes().labelPane.appendChild(div);
