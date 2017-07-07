@@ -19,12 +19,9 @@
 <link href="assets/img/logo.ico" type="image/x-icon" rel="icon" />
 
 <!-- ================== BEGIN BASE CSS STYLE ================== -->
-<link
-	href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
-	rel="stylesheet" />
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
 <link href="assets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
-<link href="assets/plugins/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" />
+<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
 <link href="assets/css/animate.min.css" rel="stylesheet" />
 <link href="assets/css/style.css" rel="stylesheet" />
 <link href="assets/css/style-responsive.min.css" rel="stylesheet" />
@@ -45,25 +42,27 @@
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed"
 						data-toggle="collapse" data-target="#header-navbar">
-						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
+						<span class="icon-bar"></span> <span class="icon-bar"></span> 
+						<span class="icon-bar"></span>
 					</button>
-					<a href="index.html" class="navbar-brand"> <span
-						class="brand-logo"> <img height='50'
-							src='assets/img/logo.png' />
-					</span> <span class="brand-text"> <span class="text-theme"></span>
+					<a href="index.html" class="navbar-brand"> 
+					<span class="brand-logo">
+						<img height='50' src='assets/img/logo.png' />
+					</span> 
+					<span class="brand-text">
+						<span class="text-theme"></span>
 					</span>
 					</a>
 				</div>
 				<div class="collapse navbar-collapse" id="header-navbar">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="#home" data-click="scroll-to-target"
-							data-target="#">首页</a></li>
+						<li><a href="#home" data-click="scroll-to-target" data-target="#">首页</a></li>
+						<li><a href="#product" data-click="scroll-to-target">产品</a></li>
+						<li><a href="#customer" data-click="scroll-to-target">客户案例</a></li>
 						<li><a href="#about" data-click="scroll-to-target">关于我们</a></li>
 						<!--  <li><a href="#team" data-click="scroll-to-target">团队</a></li> -->
 						<!-- <li><a href="#service" data-click="scroll-to-target">我们的优势</a></li>
                         <li><a href="#service" data-click="scroll-to-target">我们的价值观</a></li>-->
-						<!-- <li><a href="#client" data-click="scroll-to-target">合作伙伴</a></li> -->
 						<li><a href="#contact" data-click="scroll-to-target">联系我们</a></li>
 					</ul>
 				</div>
@@ -71,23 +70,31 @@
 		</div>
 
 		<div id="home" class="content has-bg home">
-			<!-- begin content-bg -->
 			<div class="content-bg">
 				<img src="assets/img/home_bg.jpg" alt="Home" />
 			</div>
-			<div class="down-app"">
+			<div class="down-app">
 				<img src="assets/img/down-app.jpg"
 					style="width: 150px; height: 150px;" alt="Home" />
 			</div>
-			<!-- end content-bg -->
-			<!-- begin container -->
 			<div class="container home-content">
 				<h1>慧客小额储值</h1>
 				<h3>新一代移动互联网+营销模式</h3>
 			</div>
 		</div>
+		
+		<div id="product" class="content" data-scrollview="true">
+			<div class="content-bg">
+				<img src="assets/img/xec.jpg" alt="小额储" style="width: 100%;height: 1260px;"/>
+			</div>
+		</div>
+		<div id="customer" class="content" data-scrollview="true">
+			<div class="content-bg">
+				<img src="assets/img/customer.jpg" alt="客户" style="width: 100%;height: 660px;"/>
+			</div>
+		</div>
 
-		<div id="about" class="content" data-scrollview="true">
+		<div id="about" class="content" data-scrollview="true" style="height:660px;">
 			<!-- begin container -->
 			<div class="container" data-animation="true"
 				data-animation-type="fadeInDown">
@@ -120,7 +127,7 @@
 			<h2 class="content-title">联系我们</h2>
 			<div class="row">
 				<div class="col-md-6" data-animation="true"
-					data-animation-type="fadeInLeft" style="width:45%;">
+					data-animation-type="fadeInLeft" style="width:36%;">
 					<p></p>
 					<h3 style="color: #ff6500; font-size: 18px;">北京中科慧证软件有限公司</h3>
 					<h4>
@@ -132,10 +139,8 @@
 						<a style="font-size: 18px;" href="hr@chicootec.com">hr@chicootec.com</a>
 					</p>
 				</div>
-				<div class="col-md-6 form-col" data-animation="true"
-					data-animation-type="fadeInRight"  style="width:53%;">
-					<iframe width='100%' height='300' frameborder='0' scrolling='yes'
-						marginheight='0' marginwidth='0' src='map.html'></iframe>
+				<div class="col-md-6 form-col" data-animation="true" data-animation-type="fadeInRight"  style="width:57%;">
+					<div style="width:697px;height:300px; border:#ccc solid 1px;" id="map"></div>
 				</div>
 			</div>
 		</div>
@@ -191,12 +196,78 @@
 	<script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
 	<script src="assets/plugins/scrollMonitor/scrollMonitor.js"></script>
 	<script src="assets/js/apps.min.js"></script>
-	<!-- ================== END BASE JS ================== -->
 
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2315834c3d3659a918d0c4e55533884d"></script>
 	<script>
 		$(document).ready(function() {
 			App.init();
 		});
-	</script>
+
+		var lon = 116.4218;
+		var lat = 40.0115;
+		// 百度地图API功能
+		var map = new BMap.Map("map");
+		var point = new BMap.Point(lon, lat);
+		map.centerAndZoom(point, 14);
+		var marker = new BMap.Marker(point);
+		marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+		map.addOverlay(marker);
+
+		var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});
+		var top_left_navigation = new BMap.NavigationControl();
+		var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL});
+
+		map.addControl(top_left_control);
+		map.addControl(top_left_navigation);
+		map.addControl(top_right_navigation);
+
+		function ComplexCustomOverlay(point, text, mouseoverText){
+		  this._point = point;
+		  this._text = text;
+		  this._overText = mouseoverText;
+		}
+
+		ComplexCustomOverlay.prototype = new BMap.Overlay();
+		ComplexCustomOverlay.prototype.initialize = function(map){
+		  this._map = map;
+		  var div = this._div = document.createElement("div");
+		  div.style.position = "absolute";
+		  div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+		  div.style.backgroundColor = "#EE5D5B";
+		  div.style.border = "1px solid #BC3B3A";
+		  div.style.color = "white";
+		  div.style.height = "18px";
+		  div.style.padding = "2px";
+		  div.style.lineHeight = "18px";
+		  div.style.whiteSpace = "nowrap";
+		  div.style.MozUserSelect = "none";
+		  div.style.fontSize = "12px"
+		  var span = this._span = document.createElement("span");
+		  div.appendChild(span);
+		  span.appendChild(document.createTextNode(this._text));      
+		  var that = this;
+
+		  var arrow = this._arrow = document.createElement("div");
+		  arrow.style.background = "url(assets/img/label.png) no-repeat";
+		  arrow.style.position = "absolute";
+		  arrow.style.width = "11px";
+		  arrow.style.height = "10px";
+		  arrow.style.top = "22px";
+		  arrow.style.left = "10px";
+		  arrow.style.overflow = "hidden";
+		  div.appendChild(arrow);
+		  map.getPanes().labelPane.appendChild(div);
+		  
+		  return div;
+		}
+		ComplexCustomOverlay.prototype.draw = function(){
+		  var map = this._map;
+		  var pixel = map.pointToOverlayPixel(this._point);
+		  this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+		  this._div.style.top  = pixel.y - 30 + "px";
+		}
+		var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(lon,lat), "北京中科慧证软件有限公司");
+		map.addOverlay(myCompOverlay);
+		</script>
 </body>
 </html>
