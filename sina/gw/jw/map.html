@@ -1,111 +1,70 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-	<meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
-	<meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
-	<title>百度地图API自定义地图</title>
-	<!--引用百度地图API-->
-	<style type="text/css">
-		html,body{margin:0;padding:0;}
-		.iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
-		.iw_poi_content {font:12px arial,sans-serif;overflow:visible;padding-top:4px;white-space:-moz-pre-wrap;word-wrap:break-word}
-	</style>
-	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2315834c3d3659a918d0c4e55533884d"></script>
-</head>
-
-<body>
-<!--百度地图容器-->
-<div style="width:697px;height:550px;border:#ccc solid 1px;" id="dituContent"></div>
-</body>
+<!--鐧惧害鍦板浘瀹瑰櫒-->
+<div style="width:697px;height:300px; border:#ccc solid 1px;" id="map"></div>
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2315834c3d3659a918d0c4e55533884d"></script>
 <script type="text/javascript">
-var lon = 116.422;
-var lat = 40.0118;
-    function initMap(){
-        createMap();
-        setMapEvent();
-        addMapControl();
-        addMarker();
-    }
+var lon = 116.4218;
+var lat = 40.0115;
+// 鐧惧害鍦板浘API鍔熻兘
+var map = new BMap.Map("map");
+var point = new BMap.Point(lon, lat);
+map.centerAndZoom(point, 14);
+var marker = new BMap.Marker(point);
+marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+map.addOverlay(marker);
 
-    function createMap(){
-        var map = new BMap.Map("dituContent");
-        var point = new BMap.Point(lon,lat);
-        map.centerAndZoom(point,17);
-        window.map = map;
-    }
+var top_left_control = new BMap.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT});
+var top_left_navigation = new BMap.NavigationControl();
+var top_right_navigation = new BMap.NavigationControl({anchor: BMAP_ANCHOR_TOP_RIGHT, type: BMAP_NAVIGATION_CONTROL_SMALL});
 
-    function setMapEvent(){
-        map.enableDragging()
-        map.enableScrollWheelZoom();
-        map.enableDoubleClickZoom();
-        map.enableKeyboard();
-    }
+map.addControl(top_left_control);
+map.addControl(top_left_navigation);
+map.addControl(top_right_navigation);
 
-    function addMapControl(){
-        var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
-        map.addControl(ctrl_nav);
-        var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
-        map.addControl(ctrl_ove);
-        var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
-        map.addControl(ctrl_sca);
-    }
+function ComplexCustomOverlay(point, text, mouseoverText){
+  this._point = point;
+  this._text = text;
+  this._overText = mouseoverText;
+}
 
-    var markerArr = [{title:"北京中科慧证软件有限公司",content:"电话：010-5622 8037",point:"116.422|40.0118",isOpen:1,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
-    ];
-    function addMarker(){
-        for(var i=0;i<markerArr.length;i++){
-            var json = markerArr[i];
-            var p0 = json.point.split("|")[0];
-            var p1 = json.point.split("|")[1];
-            var point = new BMap.Point(p0,p1);
-            var iconImg = createIcon(json.icon);
-            var marker = new BMap.Marker(point,{icon:iconImg});
-            var iw = createInfoWindow(i);
-            var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
-            marker.setLabel(label);
-            map.addOverlay(marker);
-            label.setStyle({
-                borderColor:"#808080",
-                color:"#333",
-                cursor:"pointer"
-            });
+ComplexCustomOverlay.prototype = new BMap.Overlay();
+ComplexCustomOverlay.prototype.initialize = function(map){
+  this._map = map;
+  var div = this._div = document.createElement("div");
+  div.style.position = "absolute";
+  div.style.zIndex = BMap.Overlay.getZIndex(this._point.lat);
+  div.style.backgroundColor = "#EE5D5B";
+  div.style.border = "1px solid #BC3B3A";
+  div.style.color = "white";
+  div.style.height = "18px";
+  div.style.padding = "2px";
+  div.style.lineHeight = "18px";
+  div.style.whiteSpace = "nowrap";
+  div.style.MozUserSelect = "none";
+  div.style.fontSize = "12px"
+  var span = this._span = document.createElement("span");
+  div.appendChild(span);
+  span.appendChild(document.createTextNode(this._text));      
+  var that = this;
 
-            (function(){
-                var index = i;
-                var _iw = createInfoWindow(i);
-                var _marker = marker;
-                _marker.addEventListener("click",function(){
-                    this.openInfoWindow(_iw);
-                });
-                _iw.addEventListener("open",function(){
-                    _marker.getLabel().hide();
-                })
-                _iw.addEventListener("close",function(){
-                    _marker.getLabel().show();
-                })
-                label.addEventListener("click",function(){
-                    _marker.openInfoWindow(_iw);
-                })
-                if(!!json.isOpen){
-                    label.hide();
-                    _marker.openInfoWindow(_iw);
-                }
-            })()
-        }
-    }
-    //创建InfoWindow
-    function createInfoWindow(i){
-        var json = markerArr[i];
-        var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
-        return iw;
-    }
-    //创建一个Icon
-   function createIcon(json){
-        var icon = new BMap.Icon("xx.jpg", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
-        return icon;
-    }
-
-    initMap();//创建和初始化地图
+  var arrow = this._arrow = document.createElement("div");
+  arrow.style.background = "url(assets/img/label.png) no-repeat";
+  arrow.style.position = "absolute";
+  arrow.style.width = "11px";
+  arrow.style.height = "10px";
+  arrow.style.top = "22px";
+  arrow.style.left = "10px";
+  arrow.style.overflow = "hidden";
+  div.appendChild(arrow);
+  map.getPanes().labelPane.appendChild(div);
+  
+  return div;
+}
+ComplexCustomOverlay.prototype.draw = function(){
+  var map = this._map;
+  var pixel = map.pointToOverlayPixel(this._point);
+  this._div.style.left = pixel.x - parseInt(this._arrow.style.left) + "px";
+  this._div.style.top  = pixel.y - 30 + "px";
+}
+var myCompOverlay = new ComplexCustomOverlay(new BMap.Point(lon,lat), "鍖椾含涓鎱ц瘉杞欢鏈夐檺鍏徃");
+map.addOverlay(myCompOverlay);
 </script>
-</html>
